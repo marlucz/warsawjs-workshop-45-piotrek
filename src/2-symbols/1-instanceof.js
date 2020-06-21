@@ -3,4 +3,10 @@
  * string `"banana"`.
  */
 export class FakeSuperclass {
+  static [Symbol.toPrimitive](instance) {
+    if (instance === "banana") {
+      return false;
+    }
+    return true;
+  }
 }

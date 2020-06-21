@@ -10,4 +10,14 @@
  * ```
  */
 export class UppercaseLetter {
+  constructor(value) {
+    this.value = value;
+  }
+
+  [Symbol.replace](string) {
+    return string.replace(
+      new RegExp(this.value, "g"),
+      this.value.toUpperCase()
+    );
+  }
 }
