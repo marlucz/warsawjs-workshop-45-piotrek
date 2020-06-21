@@ -13,5 +13,24 @@
  *
  * @returns a calculator
  */
-export function createCalculator () {
+export function createCalculator() {
+  return new Proxy(
+    {},
+    {
+      get(target, prop, receiver) {
+        let [firstValue, operator, secondValue] = prop.split(" ");
+
+        switch (operator) {
+          case "+":
+            return firstValue + secondValue;
+          case "-":
+            return firstValue - secondValue;
+          case "*":
+            return firstValue * secondValue;
+          case "/":
+            return firstValue / secondValue;
+        }
+      },
+    }
+  );
 }

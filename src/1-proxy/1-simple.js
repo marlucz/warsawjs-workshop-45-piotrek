@@ -8,5 +8,15 @@
  * @param target original object
  * @returns a proxy that always returns +1
  */
-export function alwaysPlusOne (target) {
+
+export function alwaysPlusOne(target) {
+  return new Proxy(target, {
+    get(target, property) {
+      const value = Reflect.get(target, property);
+      if (typeof value === "number") {
+        return value + 1;
+      }
+      return value;
+    },
+  });
 }
