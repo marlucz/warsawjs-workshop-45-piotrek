@@ -16,5 +16,15 @@
  * @param {any} initialValue passed as previousValue to accumulator on the
  * first call
  */
-export function scan (iterable, accumulator, initialValue) {
+export function scan(iterable, accumulator, initialValue) {
+  return {
+    *[Symbol.iterator]() {
+      let value = initialValue;
+
+      for (const i of iterable) {
+        value = accumulator(value, i);
+        yield value;
+      }
+    },
+  };
 }
